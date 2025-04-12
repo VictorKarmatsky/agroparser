@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>АгроПарсер</title>
+</head>
+<body style="font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem;">
+    <h1>🌾 АгроПарсер</h1>
+    <form method="POST">
+        <input name="keyword" type="text" placeholder="Введите ключевое слово" value="{{ keyword }}" style="width: 300px; padding: 0.5rem;">
+        <button type="submit" style="padding: 0.5rem;">🔍 Найти</button>
+    </form>
+
+    {% if results %}
+        <hr>
+        {% for source, items in results.items() %}
+            <h2>{{ source }}</h2>
+            {% if items %}
+                <ul>
+                {% for title, link in items %}
+                    <li><a href="{{ link }}" target="_blank">{{ title }}</a></li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>🔇 Ничего не найдено.</p>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
